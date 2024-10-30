@@ -1,0 +1,12 @@
+numpy==2.1.2
+scipy==1.14.1
+fastapi==0.115.3
+uvicorn==0.32.0
+sounddevice==0.5.1
+vosk==0.3.45
+gTTS==2.5.3
+pydub==0.25.1
+python-multipart==0.0.16
+azure-cognitiveservices-speech
+requests==2.32.3
+openai

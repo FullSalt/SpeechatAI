@@ -1,0 +1,27 @@
+services:
+  flask-app:
+    build: ./flask_app
+    ports:
+      - "5000:5000"
+    environment:
+      - PULSE_SERVER=/mnt/wslg/PulseServer
+    volumes:
+      - ./flask_app:/home/appuser/flask_app
+    depends_on:
+      - fastapi-app
+    networks:
+      - app-network
+
+  fastapi-app:
+    build: ./fastapi_app
+    volumes:
+      - ./fastapi_app:/home/appuser/fastapi_app
+      - /home/appuser/fastapi_app/vosk-model-ja-0.22
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

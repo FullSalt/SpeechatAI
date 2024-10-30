@@ -1,0 +1,6 @@
+.git
+.dockerignore
+Dockerfile
+docker-compose.yaml
+vosk-model-ja-0.22
+vosk-model-ja-0.22.zip

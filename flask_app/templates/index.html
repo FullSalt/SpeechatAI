@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Recorder</title>
+</head>
+<body>
+  <h1>Audio Recorder</h1>
+  <p>Hold down the "R" key to start recording. Release to stop recording.</p>
+  <p>Transcription: <span id="transcriptionDisplay"></span></p>
+  <audio id="audioPlayer" controls></audio>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
