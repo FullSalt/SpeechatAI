@@ -42,6 +42,7 @@ document.addEventListener("keyup", async (event) => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("Server response:", data);
         document.getElementById("transcriptionDisplay").innerText = data.transcript;
 
         // サーバーから返ってきた音声データを再生

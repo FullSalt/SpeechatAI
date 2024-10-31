@@ -2,7 +2,7 @@ services:
   flask-app:
     build: 
       context: ./flask_app
-      target: development
+      target: production
       args:
         PULSE_SERVER: /mnt/wslg/PulseServer
     ports:
@@ -10,9 +10,9 @@ services:
     environment:
       - FASTAPI_URL=${FASTAPI_URL}
       - PULSE_SERVER=/mnt/wslg/PulseServer
-      - FLASK_ENV=development
     volumes:
       - ./flask_app:/home/appuser/flask_app
+    tty: true
     depends_on:
       - fastapi-app
     networks:
@@ -21,18 +21,21 @@ services:
   fastapi-app:
     build: 
       context: ./fastapi_app
-      target: development
+      target: production
+      args:
+        SPEECH_KEY: ${SPEECH_KEY}
+        SPEECH_REGION: ${SPEECH_REGION}
     env_file:
       - .env
     ports:
       - "8000:8000"
     environment:
-      - FASTAPI_URL=${FASTAPI_URL}
       - SPEECH_KEY=${SPEECH_KEY}
       - SPEECH_REGION=${SPEECH_REGION}
     volumes:
       - ./fastapi_app:/home/appuser/fastapi_app
-      # - /home/appuser/fastapi_app/vosk-model-ja-0.22s
+      # - /home/appuser/fastapi_app/vosk-model-ja-0.22
+    tty: true
     networks:
       - app-network
 

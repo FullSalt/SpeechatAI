@@ -1,3 +1,5 @@
 .env
 vosk-model-ja-0.22
 vosk-model-ja-0.22.zip
+docker-compose.mywebapp.yml
+test

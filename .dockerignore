@@ -1,6 +1,7 @@
-.git
-.dockerignore
-Dockerfile
-docker-compose.yaml
+.git*
+**/*.pyc
+**/Dockerfile
 vosk-model-ja-0.22
 vosk-model-ja-0.22.zip
+__pycache__
+test

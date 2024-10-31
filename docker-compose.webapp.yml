@@ -1,0 +1,30 @@
+services:
+  flask-app:
+    image: レジストリ名.azurecr.io/speechatai-kikagaku-flask-app:latest
+    ports:
+      - "5000:5000"
+    environment:
+      PULSE_SERVER: /mnt/wslg/PulseServer
+      FLASK_ENV: development
+    volumes:
+      - ./flask_app:/home/appuser/flask_app
+    networks:
+      - app-network
+    depends_on:
+      - fastapi-app
+
+  fastapi-app:
+    image: レジストリ名.azurecr.io/speechatai-kikagaku-fastapi-app:latest
+    volumes:
+      - ./fastapi_app:/home/appuser/fastapi_app
+      # - /home/appuser/fastapi_app/vosk-model-ja-0.22
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

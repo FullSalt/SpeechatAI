@@ -4,6 +4,9 @@ import os
 from pydub import AudioSegment
 import requests
 
+# 環境変数からFastAPIのURLを取得
+FASTAPI_URL = os.getenv("FASTAPI_URL")
+
 app = Flask(__name__)
 
 # HTMLページをレンダリング
@@ -32,7 +35,7 @@ def upload_audio():
 
     # FastAPIサーバーへ送信
     files = {"file": ("recorded_audio.wav", wav_io, "audio/wav")}
-    response = requests.post("http://fastapi-app:8000/upload-audio/", files=files)
+    response = requests.post(f"{FASTAPI_URL}/recognize-by-azurespeech/", files=files)
 
     if response.status_code == 200:
         return jsonify(response.json())
